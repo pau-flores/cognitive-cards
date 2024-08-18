@@ -51,7 +51,7 @@ export default function Flashcard() {
         {flashcards.length === 0 && (
           <Box sx={{ textAlign: "center", padding: "100px 0 20px" }}>
             <Typography variant="h6" sx={{ textAlign: "center" }}>
-              You haven't created any flashcard sets yet.
+              You have not created any flashcard sets yet.
             </Typography>
             <Button
               variant="contained"
