@@ -18,26 +18,43 @@ const systemPrompt = `You are a flashcard creator. Your task is to create clear,
       }]
     }`;
 
-// Initialize openai with openrouter
-const openai = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
-});
-
 export async function POST(req) {
-  const openai = OpenAI();
+  const openai = new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OPENROUTER_API_KEY,
+  });
+
   const data = await req.text();
 
-  const completion = await openai.chat.completion.create({
+  const completion = await openai.chat.completions.create({
     messages: [
       { role: "system", content: systemPrompt },
       { role: "user", content: data },
     ],
     model: "meta-llama/llama-3.1-8b-instruct:free",
-    response_format: { type: "json_object" },
   });
 
-  const flashcards = JSON.parse(completion.data.choices[0].message.content);
+  // Extract and sanitize the response
+  let content = completion.choices[0].message.content;
 
-  return NextResponse.json(flashcards.flashcard);
+  // Find the JSON part of the response
+  const jsonStartIndex = content.indexOf("{");
+  const jsonEndIndex = content.lastIndexOf("}") + 1;
+
+  // Extract the JSON content
+  const jsonString = content.slice(jsonStartIndex, jsonEndIndex);
+
+  try {
+    const flashcards = JSON.parse(jsonString);
+
+    return NextResponse.json(flashcards.flashcards);
+  } catch (error) {
+    console.error("Failed to parse JSON:", error);
+    return NextResponse.json(
+      { error: "Invalid JSON response from AI" },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json(flashcards.flashcards);
 }
