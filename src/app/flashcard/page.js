@@ -5,6 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -53,6 +54,25 @@ export default function Flashcard() {
       <Header />
 
       <Container maxWidth="md">
+        {flashcards.length === 0 && (
+          <Box sx={{ textAlign: "center", padding: "100px 0 20px" }}>
+            <Typography variant="h6" sx={{ textAlign: "center" }}>
+              Please provide the ID of the flashcard set you want to view.
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                mt: 6,
+                backgroundColor: "#0077B6",
+                color: "#FFF",
+                "&:hover": { backgroundColor: "#00B4D8" },
+              }}
+              href="/flashcards"
+            >
+              View Flashcard Sets
+            </Button>
+          </Box>
+        )}
         <Grid container spacing={3} sx={{ my: 4 }}>
           {flashcards.map((flashcard, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
