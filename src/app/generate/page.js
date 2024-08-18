@@ -159,12 +159,33 @@ export default function Generate() {
                   <Grid item xs={12} sm={6} md={4} key={index}>
                     <Card>
                       <CardContent>
-                        <Typography variant="h6">Front:</Typography>
-                        <Typography>{flashcard.front}</Typography>
-                        <Typography variant="h6" sx={{ mt: 2 }}>
-                          Back:
-                        </Typography>
-                        <Typography>{flashcard.back}</Typography>
+                        <Box
+                          className="flip-container"
+                          sx={{
+                            perspective: "1000px",
+                          }}
+                        >
+                          <Box className="flipper">
+                            <Box className="front">
+                              <Typography
+                                variant="h5"
+                                component="div"
+                                textAlign={"center"}
+                              >
+                                {flashcard.front}
+                              </Typography>
+                            </Box>
+                            <Box className="back">
+                              <Typography
+                                variant="h6"
+                                component="div"
+                                textAlign={"center"}
+                              >
+                                {flashcard.back}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
                       </CardContent>
                     </Card>
                   </Grid>
