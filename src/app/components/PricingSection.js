@@ -15,7 +15,7 @@ import { FaCheckCircle } from "react-icons/fa";
 const handleSubscription = async () => {
   const checkoutSession = await fetch("/api/checkout_sessions", {
     method: "POST",
-    headers: { origin: "http://localhost:3000" },
+    headers: { origin: process.env.NEXT_PUBLIC_APP_URL },
   });
 
   const textResponse = await checkoutSession.text();
