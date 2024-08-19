@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { PiCardsThree } from "react-icons/pi";
 import { LuBrainCircuit } from "react-icons/lu";
 
@@ -12,56 +12,58 @@ const HeroSection = () => (
         overflow: "hidden",
       }}
     >
-      <Grid container spacing={4} alignItems="center">
-        <Grid item xs={12} md={6}>
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{ fontWeight: "bold", color: "white" }}
-            gutterBottom
-          >
-            Welcome to CognitiveCards
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{ fontWeight: "semi-bold", color: "white" }}
-            gutterBottom
-          >
-            Unlock Your Potential with AI-Generated Flashcards for Smarter
-            Learning.
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              mt: 2,
-              mr: 2,
-              backgroundColor: "#CAF0F8",
-              color: "#03045E",
-              "&:hover": { backgroundColor: "#90E0EF" },
-            }}
-            href="/generate"
-          >
-            Get Started
-          </Button>
+      <Container>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{ fontWeight: "bold", color: "white" }}
+              gutterBottom
+            >
+              Welcome to CognitiveCards
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{ fontWeight: "semi-bold", color: "white" }}
+              gutterBottom
+            >
+              Unlock Your Potential with AI-Generated Flashcards for Smarter
+              Learning.
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                mt: 2,
+                mr: 2,
+                backgroundColor: "#CAF0F8",
+                color: "#03045E",
+                "&:hover": { backgroundColor: "#90E0EF" },
+              }}
+              href="/generate"
+            >
+              Get Started
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
+            <LuBrainCircuit
+              style={{
+                width: "140px",
+                height: "auto",
+                color: "white",
+              }}
+            />
+            <PiCardsThree
+              style={{
+                width: "140px",
+                height: "auto",
+                color: "white",
+              }}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
-          <LuBrainCircuit
-            style={{
-              width: "140px",
-              height: "auto",
-              color: "white",
-            }}
-          />
-          <PiCardsThree
-            style={{
-              width: "140px",
-              height: "auto",
-              color: "white",
-            }}
-          />
-        </Grid>
-      </Grid>
+      </Container>
     </Box>
     <Box
       component="svg"
